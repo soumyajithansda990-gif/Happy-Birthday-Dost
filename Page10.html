@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Happy Birthday! 🎂</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: linear-gradient(135deg, #ff4081, #7c4dff);
+        }
+
+        .card {
+            padding: 25px;
+            max-width: 500px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: clamp(32px, 8vw, 52px);
+            animation: bounce 1s infinite alternate;
+        }
+
+        p {
+            font-size: 19px;
+            line-height: 1.6;
+        }
+
+        button {
+            padding: 14px 22px;
+            margin: 8px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #e91e63;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -40px;
+            animation: float 6s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes bounce {
+            to { transform: translateY(-10px); }
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h1>🎂 Happy Birthday! 🎉</h1>
+
+        <h2>Hey Bestie! ❤️</h2>
+
+        <p>
+            এতগুলো পেজ পার করে অবশেষে এখানে এলি! 😂
+            <br>
+            তোর জীবনে আসুক অনেক Happiness,
+            Success আর Unlimited বিরিয়ানি! 🍗🤣
+        </p>
+
+        <h2>Stay Crazy, Stay Happy! 🥳</h2>
+
+        <p>বন্ধু হিসেবে তুই সত্যিই Special! ❤️</p>
+
+        <audio id="music" loop>
+            <source src="birthday.mp3" type="audio/mpeg">
+        </audio>
+
+        <button onclick="playMusic()">
+            🎵 Play Birthday Song
+        </button>
+
+        <button onclick="location.href='index.html'">
+            🔁 Start Again
+        </button>
+
+        <p id="status"></p>
+    </div>
+
+    <script>
+        function playMusic() {
+            const music = document.getElementById("music");
+
+            music.play()
+                .then(() => {
+                    document.getElementById("status").textContent =
+                        "🎶 Birthday music is playing!";
+                })
+                .catch(() => {
+                    document.getElementById("status").textContent =
+                        "গান চালু হয়নি। birthday.mp3 ফাইলটি পরীক্ষা করো।";
+                });
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.textContent = ["❤️", "🎉", "🎂", "💕"][
+                Math.floor(Math.random() * 4)
+            ];
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (20 + Math.random() * 25) + "px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        setInterval(createHeart, 350);
+    </script>
+</body>
+</html>
